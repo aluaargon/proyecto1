@@ -22,7 +22,7 @@ include __DIR__ . "/partials/nav.part.php";
                   <h1>FIND NICE PICTURES HERE</h1>
                   <hr>
                </div>
-            </div>
+            </div> 
          </div>
       </div>
 
