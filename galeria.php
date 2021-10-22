@@ -1,61 +1,45 @@
 <?php
     $title = "Contact";
     require_once "./utils/utils.php";
+    require_once "./entity/ImagenGaleria.php";
+    require_once "./utils/File.php";
+    require_once "./exceptions/FileExexption.php";
 
     $info = $description = $urlImagen = "";
     $descriptionError = $imagenErr = $hayErrores = false;
     $errores = [];
-
     if ("POST" === $_SERVER["REQUEST_METHOD"]) {
-        if (empty($_POST)) {
-            $errores[] = "Se ha producido un error al procesar el formulario";
-            $imagenErr = true; 
-        }
-
-        if (!$imagenErr) {
-            $description = sanitizeInput(($_POST["description"] ?? ""));
-
-            if (empty($description)) {
-                $errores[] = "La descripción es obligatoria";
-                $descriptionError = true;
-            }
-        }
-        
-        if (isset($_FILES['imagen']) && ($_FILES['imagen']['error'] == UPLOAD_ERR_OK)) {
-            if ($_FILES['imagen']['size'] > (2 * 1024 * 1024)) {
-                $errores[] = "El arichivo no puede susperar los 2MB";
-                $imagenErr = true;
-            }
-
-            $extensions = array("image/jpeg", "image/jpg", "image/png");
-
-            if (false === in_array($_FILES['imagen']['type'], $extensions)) {
-                $errores[] = "Extension no permitida, solo son validos archivos jpg o png";
-                $imagenErr = true;
-            }
-
-            if (!$imagenErr) {
-                if (false === move_uploaded_file($_FILES['imagen']['tmp_name'], "images/index/gallery/" . $_FILES['imagen']['name'])) {
-                    $errores[] = "Se ha producido un error. Codigo de error: " . $_FILES['imagen']['error'];
-                    $imagenErr = true;
+        try {
+            
+                if (empty($_POST)) {
+                throw new FileException("Se ha producido un error al procesar el formulario");
                 }
-            }
-        } else {
-            $errores[] = "Se ha producido un error. Codigo de error: " . $_FILES['imagen']['error'];
+                $imageFile = new File("imagen", array("image/jpeg", "image/jpg", "image/png"), (2*1024*1024));
+                $imageFile->saveUploadedFile(ImagenGaleria::RUTA_IMAGENES_GALLERY);
+                
+        } catch (FileException $fe) {
+            $errores[] = $fe->getMessage();
             $imagenErr = true;
         }
 
-        if (sizeOf($errores) > 0) {
-            $hayErrores = true;
+        $description = sanitazeInput(($_POST["description"] ?? ""));
+        if (empty($description)) {
+            $errores[] = "La descripción es obligatoria";
+            $descriptionError = true;
         }
-
-        if (!$hayErrores) {
-            $info = "Imagen enviada correctamente:";
-            $urlImagen = "images/index/gallery/" . $_FILES['imagen']['name'];
+        
+        if (0 == count($errores)) {
+            $description = sanitizeInput(($_POST["description"] ?? ""));
+            $info = "Imagen enviad correctamente:";
+            $urlImagen = ImagenGaleria::RUTA_IMAGENES_GALLERY . $imageFile->getFileName();
+            
             $description = "";
-        }else {
-            $info = "Datos erroneos";
+        } else {
+            $info = "Datos erróneos";
         }
+        
+       
     } 
+
     include("./views/galeria.view.php");
 
