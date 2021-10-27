@@ -37,9 +37,8 @@ class File
         if (empty($this->file)) {
             throw new FileException("Se ha producido un error al procesar el formulario.");            
         }
-
-        if ($this->file["error"] !== UPLOAD_ERR_OK) {
-            switch ($this->file["error"]) {
+        if ($this->file["error"] !== UPLOAD_ERR_OK){
+            switch ($this->file["error"]){
                 case UPLOAD_ERR_NO_FILE:
                     throw new FileException("Debes seleccionar un fichero");                    
                     break;
@@ -51,20 +50,17 @@ class File
                     throw new FileException("No se ha podido subir el fichero completo");
                     break;
                 default:
-                    throw new FileException("No se ha podido subir el fichero");                    
-                    break;
+                    throw new FileException("No se ha podido subir el fichero");
             }
         }
-        
-        if (false == in_array($this->file["type"], $mimeTypes)) {
+        if (false === in_array($this->file["type"], $mimeTypes)) {
             throw new FileException("El tipo de fichero no está soportado"); 
         }
         if (($maxSize > 0) && ($this->file["size"] > $maxSize)) {
             throw new FileException("El fichero no puede susperar $maxSize bytes");
             
         }
-
-        $this->fileName = sanitazeInput($this->file["name"]);
+        $this->fileName = sanitizeInput($this->file["name"]);
 
     }
 
@@ -74,30 +70,28 @@ class File
      *
      * @return string
      */
-
-     public function getFileName(): string
+    public function getFileName(): string
     {
         return $this->fileName;
     }
 
-     /**
+    /**
      * Guarda en $desPath el fichero $this->fileName
      * @param string $destPath
      * @throws FileException
      */
-
-     public function saveUploadedFile(string $destPath)
+    public function saveUploadedFile(string $destPath)
     {
-        if (false === is_upload_file($this->file["tmp_name"])) {
-            throw new FileException("El archivo no se ha sibido mediante un formulario");
+        if (false === is_uploaded_file($this->file["tmp_name"])){
+            throw new FileException("El archivo no se ha subido mediante un formulario");
         }
 
         $ruta = $destPath . $this->getFileName();
 
-        if (true === is_file($ruta)) {
+        if (true === is_file($ruta)){
             $idUnico = time();
             $this->fileName = $idUnico . "_" . $this->getFileName();
-            $ruta = $desPath . $this->getFileName();
+            $ruta = $destPath . $this->getFileName();
         }
 
         if (false === move_uploaded_file($this->file["tmp_name"], $ruta)) {
