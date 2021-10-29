@@ -1,5 +1,5 @@
 <?php
-    $title = "Galeria";
+    $title = "Asociados";
     require_once "./utils/utils.php";
     require_once "./entity/Asociado.php";
     require_once "./utils/File.php";
@@ -10,7 +10,7 @@
     $nombreErr = $imagenErr = $hayErrores = false;
     $errores = [];
     if ("POST" === $_SERVER["REQUEST_METHOD"]) {
-        try {
+        try { 
             
                 if (empty($_POST)) {
                 throw new FileException("Se ha producido un error al procesar el formulario");
