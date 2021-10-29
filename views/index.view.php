@@ -82,15 +82,19 @@ include __DIR__ . "/partials/nav.part.php";
         </form>
       </div>
     <!-- End of Newsletter form -->  
+<<<<<<< HEAD
 
     <?php
       include __DIR__ . "/partials/asociado.part.php";
     ?>
 
+=======
+>>>>>>> 725605a1e4c72898394f70c6a70db7311c3dd1b7
    </div><!-- End of index box -->
 
    <?php
 
+    include __DIR__ . "/partials/asociado.part.php";
     include __DIR__ . "/partials/fin-doc.part.php";
 
   ?> 

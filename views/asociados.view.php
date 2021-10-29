@@ -15,6 +15,7 @@
 					<a href='<?=$urlImagen;?>' target='_blank'>Ver imagen</a>
 				<?php endif;?>	
 				<form class="form-horizontal" action="/asociados.php" method="POST" enctype="multipart/form-data">
+
                     <div class="form-group">
 						<div class="col-xs-6">
 							<label for="nombre" class="label-control">Nombre</label>
@@ -23,6 +24,17 @@
 					</div>
 
                     <div class="form-group">
+
+				<form class="form-horizontal" action="/contact.php" method="POST">
+
+				<div class="form-group">
+					<div class="col-xs-6">
+						<label for="firstName" class="label-control">First Name</label>
+						<input class="form-control <?= ($firstNameError ? " has-error" : "");?>" type="text" name="firstName" id="firstName" value="<?=$firstName?>">
+				</div>
+				</div>
+				<div class="form-group">
+
 						<div class="col-xs-6">
 							<label for="imagen" class="label-control">Imagen</label>
 							<input class="form-control-file" type="file" name="imagen">
@@ -41,3 +53,16 @@
 <?php 
     include __DIR__ . "/partials/fin-doc.part.php";
 ?>
+
+							<label for="description" class="label-control">Descripción</label>
+							<textarea class="form-control" name="description" id="description"><?=$description;?></textarea>
+							<button class="pull-right btn btn-lg sr-button">SEND</button>
+						</div>
+
+					</div>
+
+				</form>
+				<?php 
+					include __DIR__ . "/partials/fin-doc.part.php";
+				?>
+
