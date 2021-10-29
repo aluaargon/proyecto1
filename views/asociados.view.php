@@ -15,14 +15,34 @@
 					<a href='<?=$urlImagen;?>' target='_blank'>Ver imagen</a>
 				<?php endif;?>	
 				<form class="form-horizontal" action="/asociados.php" method="POST" enctype="multipart/form-data">
+<<<<<<< HEAD
+=======
+
+>>>>>>> fd20d845d4ea088e727501ae674099528bc7c2f0
                     <div class="form-group">
 						<div class="col-xs-6">
 							<label for="nombre" class="label-control">Nombre</label>
 							<input class="form-control" type="text" name="nombre">
 						</div>
 					</div>
+<<<<<<< HEAD
 
                     <div class="form-group">
+=======
+
+                    <div class="form-group">
+
+				<form class="form-horizontal" action="/contact.php" method="POST">
+
+				<div class="form-group">
+					<div class="col-xs-6">
+						<label for="firstName" class="label-control">First Name</label>
+						<input class="form-control <?= ($firstNameError ? " has-error" : "");?>" type="text" name="firstName" id="firstName" value="<?=$firstName?>">
+				</div>
+				</div>
+				<div class="form-group">
+
+>>>>>>> fd20d845d4ea088e727501ae674099528bc7c2f0
 						<div class="col-xs-6">
 							<label for="imagen" class="label-control">Imagen</label>
 							<input class="form-control-file" type="file" name="imagen">
@@ -36,8 +56,29 @@
 							<button class="pull-right btn btn-lg sr-button">SEND</button>
                         </div>
 					</div>
+<<<<<<< HEAD
 
 				</form>
 <?php 
     include __DIR__ . "/partials/fin-doc.part.php";
 ?>
+=======
+
+				</form>
+<?php 
+    include __DIR__ . "/partials/fin-doc.part.php";
+?>
+
+							<label for="description" class="label-control">Descripción</label>
+							<textarea class="form-control" name="description" id="description"><?=$description;?></textarea>
+							<button class="pull-right btn btn-lg sr-button">SEND</button>
+						</div>
+
+					</div>
+
+				</form>
+				<?php 
+					include __DIR__ . "/partials/fin-doc.part.php";
+				?>
+
+>>>>>>> fd20d845d4ea088e727501ae674099528bc7c2f0
