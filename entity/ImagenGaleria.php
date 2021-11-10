@@ -1,8 +1,7 @@
 <?php
-class ImagenGaleria 
+class ImagenGaleria
 {
     const RUTA_IMAGENES_PORTFOLIO = 'images/index/portfolio/';
-
     const RUTA_IMAGENES_GALLERY = 'images/index/gallery/';
     /**
      * @var string
@@ -13,12 +12,12 @@ class ImagenGaleria
      * @var string
      */
     private $descripcion;
-
+    
     /**
      * @var int
      */
     private $numVisualizaciones;
-
+    
     /**
      * @var int
      */
@@ -28,20 +27,18 @@ class ImagenGaleria
      * @var int
      */
     private $numDownloads;
+    
 
-
-    public function __construct(String $nombre, String $descripcion,
-                                int $numVisualizaciones = 0, int $numLikes =0,
+    public function __construct(string $nombre, string $descripcion,
+                                int $numVisualizaciones = 0, int $numLikes = 0,
                                 int $numDownloads = 0){
         $this->nombre = $nombre;
         $this->descripcion = $descripcion;
         $this->numVisualizaciones = $numVisualizaciones;
         $this->numLikes = $numLikes;
         $this->numDownloads = $numDownloads;
-      
-    }
-   
 
+    }
 
     /**
      * Get the value of nombre
@@ -162,41 +159,24 @@ class ImagenGaleria
 
         return $this;
     }
-
+    
     /**
-
      * Devuelve el path a las imágenes del portfolio
-
      *
-
      * @return string
-
      */
-
     public function getUrlPortfolio() : string
-
     {
-
         return self::RUTA_IMAGENES_PORTFOLIO . $this->getNombre();
-
     }
 
     /**
-
      * Devuelve el path a las imágenes de la galería
-
      *
-
      * @return string
-
      */
-
     public function getUrlGallery() : string
-
     {
-
         return self::RUTA_IMAGENES_GALLERY . $this->getNombre();
-
     }
-
 }

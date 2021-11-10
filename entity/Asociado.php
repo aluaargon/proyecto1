@@ -1,39 +1,36 @@
-<?php
+<?php 
+
 class Asociado
 {
     const RUTA_IMAGENES_ASOCIADO = 'images/index/';
-
     /**
-     * En esta variable guardaremos el nombre del 
-     *
      * @var string
      */
     private $nombre;
 
     /**
-     * En esta variable se guarda el nombre del logo del 
-     *
      * @var string
      */
     private $logo;
-    
+
     /**
-     * En esta variable se guarda el texto que se usara como texto alternativo
-     * en el atributo alt y el atributo title del html
-     *
      * @var string
      */
     private $descripcion;
 
-    public function __construct(String $nombre, String $logo, String $descripcion)
-    {
+    /**
+     * @param string $nombre
+     * @param string $logo
+     * @param string $descripcion
+     */
+    public function __construct(string $nombre, string $logo, string $descripcion = ""){
         $this->nombre = $nombre;
         $this->logo = $logo;
         $this->descripcion = $descripcion;
     }
 
     /**
-     * Get en esta variable guardaremos el nombre del 
+     * Get the value of nombre
      *
      * @return  string
      */ 
@@ -43,9 +40,9 @@ class Asociado
     }
 
     /**
-     * Set en esta variable guardaremos el nombre del 
+     * Set the value of nombre
      *
-     * @param  string  $nombre  En esta variable guardaremos el nombre del 
+     * @param  string  $nombre
      *
      * @return  self
      */ 
@@ -57,7 +54,7 @@ class Asociado
     }
 
     /**
-     * Get en esta variable se guarda el nombre del logo del 
+     * Get the value of logo
      *
      * @return  string
      */ 
@@ -67,9 +64,9 @@ class Asociado
     }
 
     /**
-     * Set en esta variable se guarda el nombre del logo del 
+     * Set the value of logo
      *
-     * @param  string  $logo  En esta variable se guarda el nombre del logo del 
+     * @param  string  $logo
      *
      * @return  self
      */ 
@@ -81,7 +78,7 @@ class Asociado
     }
 
     /**
-     * Get en el atributo alt y el atributo title del html
+     * Get the value of descripcion
      *
      * @return  string
      */ 
@@ -89,10 +86,11 @@ class Asociado
     {
         return $this->descripcion;
     }
+
     /**
-     * Set en el atributo alt y el atributo title del html
+     * Set the value of descripcion
      *
-     * @param  string  $descripcion  en el atributo alt y el atributo title del html
+     * @param  string  $descripcion
      *
      * @return  self
      */ 
@@ -103,9 +101,13 @@ class Asociado
         return $this;
     }
 
-    public function getUrlLogoAsociado() : string
+    /**
+     * Devuelve el path a las imágenes del asociado
+     *
+     * @return string
+     */
+    public function getUrlImagen() : string
     {
         return self::RUTA_IMAGENES_ASOCIADO . $this->getLogo();
     }
-   
 }

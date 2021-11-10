@@ -1,12 +1,6 @@
 <?php
-
   include __DIR__ . "/partials/inicio-doc.part.php";
-
-?> 
-<?php
-
-include __DIR__ . "/partials/nav.part.php";
-
+  include __DIR__ . "/partials/nav.part.php";
 ?>
 <!-- Principal Content Start -->
    <div id="blog">
@@ -144,7 +138,7 @@ include __DIR__ . "/partials/nav.part.php";
                  <i class="fa fa-heart sr-icons"></i> 10
                  <i class="fa fa-comments sr-icons"></i> 10
                  </span>
-                 <h4 class="text-left"><a href="single_post.html"><strong>Consequuntur</strong></a></h4>
+                 <h4 class="text-left"><a href="single_post.php"><strong>Consequuntur</strong></a></h4>
                </div>
              </div>
         </div>
@@ -154,8 +148,25 @@ include __DIR__ . "/partials/nav.part.php";
      </div>
    </div>
 <!-- End of Principal Content Start --> 
+
+<!-- Footer -->
+   <footer>
+     <div class="container text-muted text-center">
+         <ul class="list-inline social-buttons">
+            <li><a href="#"><i class="fa fa-facebook sr-icons"></i></a>
+            </li>
+            <li><a href="#"><i class="fa fa-twitter sr-icons"></i></a>
+            </li>
+            <li><a href="#"><i class="fa fa-google-plus sr-icons"></i></a>
+            </li>
+         </ul>
+         <ul class="list-inline">
+           <li class="footer-number"><i class="fa fa-phone sr-icons"></i>  (00228)92229954 </li>
+           <li><i class="fa fa-envelope sr-icons"></i>  kouvenceslas93@gmail.com</li>
+         </ul>
+         <p>Photography Fanatic Template &copy; 2017</p>
+     </div>
+   </footer>
 <?php
-
   include __DIR__ . "/partials/fin-doc.part.php";
-
-?> 
+?>
