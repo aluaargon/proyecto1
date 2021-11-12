@@ -10,12 +10,14 @@ class Connection
                 PDO::ATTR_PERSISTENT => true  
             ];
             $connection = new PDO(
-                'mysql:host=localhost;dbname=proyecto1,charset=utf8',
-                'proyecto1',
+                'mysql:host=localhost;dbname=proyecto1;charset=utf8',
+                'root',
                 'sa',
                 $opciones);
         } catch (PDOException $PDOException) {
             die($PDOException->getMessage());
         }
+        return $connection;
+
     }
 }

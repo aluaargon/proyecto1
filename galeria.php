@@ -13,6 +13,8 @@
     require_once "./exceptions/FileException.php";
     require_once "./utils/SimpleImage.php";
     require_once "./entity/ImagenGaleria.php";
+    require_once "./database/QueryBuilder.php";
+    require_once "./database/Connection.php";
     
     $info = $urlImagen = "";
 
@@ -79,5 +81,12 @@
         }else{
           
         }
+    }
+    $connection = Connection::make();
+    $queryBuilder = new QueryBuilder($connection);
+    try {
+      $imagenes = $queryBuilder->findAll("imagenes", "ImagenGaleria");
+    } catch (QueryException $qe) {
+      $imagenes = [];
     }
     include("./views/galeria.view.php");
