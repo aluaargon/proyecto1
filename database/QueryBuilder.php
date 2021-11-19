@@ -72,4 +72,48 @@ abstract class QueryBuilder
         $pdoException->getMessage());
         }
     }
+    public function executeTransaction(callable $fnExecuteQuerys)
+    {
+        try{
+            $this->connection->beginTransaction();
+            $fnExecuteQuerys();
+            $this->connection->commit();
+        }catch (\PDOException $pdoException){
+            $this->connection->rollBack();
+            throw new QueryException("No se ha podido relizar la operación: " . $pdoException->getMessage());
+            
+        }
+    }
+    
+    public function getUpdates(array $parameters): string
+    {
+        $updates = "";
+        foreach ($parameters as $key => $value){
+            if ($key !== 'id') {
+                if ($updates !== '') {
+                    $updates .= ", ";
+                }
+                $updates .= $key . "=:" . $key;
+            }
+        }
+        return $updates;
+    }
+
+    public function update(Entity $entity)
+    {
+        try {
+            $parameters = $entity->toArray();
+            $sql = sprintf(
+                'UPDATE %s SET %s WHERE id = :id',
+                $this->table,
+                $this->getUpdates($parameters)
+            );
+
+            $statement = $this->connection->prepare($sql);
+            $statement->execute($parameters);
+
+        } catch (\PDOException $pdoException) {
+            throw new QueryException("Error al actualizar el elemento con id {$parameters['id']}:" . $pdoException->getMessage());
+        }
+    }
 }

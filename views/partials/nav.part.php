@@ -15,7 +15,7 @@
         <div class="collapse navbar-collapse navbar-right" id="menu">
             <ul class="nav navbar-nav">
                 <li class="<?= (esOpcionMenuActiva("index")? "active" : "");?> lien">
-                  <a href="<?= (esOpcionMenuActiva("index")? "#" : "");?>"><i class="fa fa-home sr-icons"></i> Home</a>
+                  <a href="<?= (esOpcionMenuActiva("index")? "#" : "/");?>"><i class="fa fa-home sr-icons"></i> Home</a>
                 </li>
                 <li class="<?= (esOpcionMenuActiva("about")? "active" : "");?> lien">
                   <a href="<?= (esOpcionMenuActiva("about")? "#" : "about.php");?>"><i class="fa fa-bookmark sr-icons"></i> About</a>
