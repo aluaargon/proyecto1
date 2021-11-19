@@ -1,0 +1,1 @@
+En inyección de dependencias antes del construct declarar private $conection;

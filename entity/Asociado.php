@@ -1,6 +1,7 @@
 <?php 
+require_once __DIR__ . '/Entity.php';
 
-class Asociado
+class Asociado extends Entity
 {
     const RUTA_IMAGENES_ASOCIADO = 'images/index/';
     /**
@@ -109,5 +110,14 @@ class Asociado
     public function getUrlImagen() : string
     {
         return self::RUTA_IMAGENES_ASOCIADO . $this->getLogo();
+    }
+    public function toArray(): array
+    {
+
+        return [
+            'nombre' => $this->getNombre(),
+            'logo' => $this->getLogo(),
+            'descripcion' => $this->getDescripcion()
+        ];
     }
 }
