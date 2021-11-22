@@ -16,12 +16,13 @@
     require_once "./entity/Asociado.php";
     require_once "./database/Connection.php";
     require_once "./core/App.php";
+    require_once "./repository/AsociadoRepository.php";
 
+    $info = $urlImagen = "";
     $config = require_once 'app/config.php';
     App::bind("config", $config);
     App::bind("connection", Connection::make($config['database']));
- 
-    $info = $urlImagen = "";
+    $repositorio = new AsociadoRepository();    
 
     $nombre = new InputElement('text');
     $nombre
@@ -70,6 +71,9 @@
               ->fromFile(Asociado::RUTA_IMAGENES_ASOCIADO . $file->getFileName())  
               ->resize(50, 50)
               ->toFile(Asociado::RUTA_IMAGENES_ASOCIADO . $file->getFileName());
+
+              $asociado = new Asociado($nombre->getValue(), $file->getFileName(), $description->getValue());
+              $repositorio->save($asociado);
               $info = 'Imagen enviada correctamente'; 
               $urlImagen = Asociado::RUTA_IMAGENES_ASOCIADO . $file->getFileName();
               $form->reset();

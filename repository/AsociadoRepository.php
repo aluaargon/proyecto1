@@ -10,5 +10,4 @@ class AsociadoRepository extends QueryBuilder
         parent::__construct('asociados', 'Asociado');
 
     }
-
 }

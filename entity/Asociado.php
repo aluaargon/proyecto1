@@ -24,7 +24,7 @@ class Asociado extends Entity
      * @param string $logo
      * @param string $descripcion
      */
-    public function __construct(string $nombre, string $logo, string $descripcion = ""){
+    public function __construct(string $nombre = "", string $logo = "", string $descripcion = ""){
         $this->nombre = $nombre;
         $this->logo = $logo;
         $this->descripcion = $descripcion;
