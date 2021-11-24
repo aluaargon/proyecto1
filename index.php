@@ -1,4 +1,6 @@
 <?php
+    session_start();
+
     $title = "Home";
     require_once "./utils/utils.php";
     require_once "./entity/ImagenGaleria.php";
@@ -16,6 +18,6 @@
     $galeria = $repositorio->findAll();
 
     $repositorio = new AsociadoRepository();
-    $asociados = $repositorio->findAll();
+    $asociados = getAsociados($repositorio->findAll());
 
     include("./views/index.view.php");

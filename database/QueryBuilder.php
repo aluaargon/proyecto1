@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . "/../exceptions/QueryException.php";
+require_once __DIR__ . "/../exceptions/NotFoundException.php";
 require_once __DIR__ . "/Connection.php";
 require_once __DIR__ . "/../core/App.php";
 require_once __DIR__ . "/../entity/Entity.php";
@@ -7,17 +8,17 @@ require_once __DIR__ . "/../entity/Entity.php";
 abstract class QueryBuilder
 {
   
-    private $connection;
+    protected $connection;
     
     /**
      * @var string
      */
-    private $table;
+    protected $table;
 
     /**
      * @var string;
      */
-    private $classEntity;
+    protected $classEntity;
 
     public function __construct(string $table, string $classEntity)
     {
@@ -54,7 +55,7 @@ abstract class QueryBuilder
             
         }   
     }
-
+    
     public function save(Entity $entity)
     {
         try {

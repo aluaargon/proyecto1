@@ -1,4 +1,6 @@
 <?php
+    session_start();
+
     $title = "Blog";
     require_once "./utils/utils.php";
     require_once "./database/Connection.php";

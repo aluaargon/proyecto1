@@ -1,10 +1,14 @@
 <?php
+session_start();
+
 require_once "./entity/ImagenGaleria.php";
 require_once "./database/Connection.php";
 require_once "./database/QueryBuilder.php";
 
-$connection = Connection::make();
-$queryBuilder = new QueryBuilder($connection);
+$config = require_once 'app/config.php';
+App::bind("config", $config);
+App::bind("connection", Connection::make($config['database']));
+    
 try {
     $imagenes = $queryBuilder->findAll('imagenes', 'imagenGaleria');
     foreach ($imagenes as $imagen) {
